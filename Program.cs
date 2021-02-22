@@ -9,10 +9,14 @@ namespace csharp_game_parts
             Console.Clear();
             Console.CursorVisible = false;
 
-            Snake snake = new Snake();    
+            Snake snake = new Snake();
+            Board game = new Board(30, 60);
+            int originalHeight = Console.WindowHeight;
+            int originalWidth = Console.WindowWidth;
             ConsoleKeyInfo a;
 
-            snake.Draw();            
+            game.Draw();
+            snake.Draw();
 
             do
             {
@@ -45,7 +49,11 @@ namespace csharp_game_parts
                     default:
                         break;
                 }
-            } while (a.Key != ConsoleKey.X);
+            } while (a.Key != ConsoleKey.Escape); // quit the game
+            
+            Console.SetWindowSize(originalWidth,originalHeight);
+            Console.SetBufferSize(originalWidth, originalHeight);
+            Console.Clear();        
         }        
     }
 }

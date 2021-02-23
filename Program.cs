@@ -17,6 +17,7 @@ namespace csharp_game_parts
 
             game.Draw();
             snake.Draw();
+            game.SetApple(snake.parts);
 
             do
             {

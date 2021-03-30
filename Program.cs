@@ -10,7 +10,7 @@ namespace csharp_game_parts
             Console.CursorVisible = false;
 
             Snake snake = new Snake();
-            Board game = new Board(30, 60);
+            Board game = new Board(18,36);
             bool gameLost = false;
             int originalHeight = Console.WindowHeight;
             int originalWidth = Console.WindowWidth;
@@ -32,7 +32,7 @@ namespace csharp_game_parts
                         gameLost = true;
                         break;
                     }                                   
-                    Thread.Sleep(133); // Loop until input is entered.
+                    Thread.Sleep(100); // Loop until input is entered.
                 }
 
                 if(gameLost)
@@ -63,8 +63,19 @@ namespace csharp_game_parts
                 }
             } while (userDirection.Key != ConsoleKey.Escape && !gameLost); // quit the game
             
-            Console.SetCursorPosition(7,60);
-            Console.WriteLine("Lost <Press any key to exit>");
+            Console.Clear();
+            if(gameLost)
+            {
+            Console.SetCursorPosition(7,3);
+            Console.WriteLine($"Lost !!! You got {game.Score} points");
+            Console.SetCursorPosition(7,5);
+            Console.WriteLine("<press any key to exit>");
+            }
+            else
+            {
+                Console.SetCursorPosition(7,3);
+                Console.WriteLine("Bye");
+            }            
             Console.ReadKey(true);
             Console.SetWindowSize(originalWidth,originalHeight);
             Console.SetBufferSize(originalWidth, originalHeight);

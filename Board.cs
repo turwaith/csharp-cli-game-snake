@@ -5,7 +5,7 @@ class Board
     int Rows {get; set;}
     int Cols {get; set;}
     Pos Apple = new Pos(0,0);
-    int Score = 0;
+    public int Score = 0;
     public Board(int Rows, int Cols)
     {
         this.Rows = Rows < Console.LargestWindowHeight ? Rows+4 : Console.LargestWindowHeight - 5;
@@ -45,13 +45,14 @@ class Board
     }
     public void Draw()
     {
-        Console.SetWindowSize(Cols+3, Rows+2);
-        Console.SetBufferSize(Cols +3, Rows+2);
-        Console.SetCursorPosition(10,10);
-        Console.WriteLine("Snake");
+        Console.SetWindowSize(Cols+2, Rows+2);
+        Console.SetBufferSize(Cols+2, Rows+2);
+        // Console.SetCursorPosition(10,10);
+        // Console.WriteLine("Snake");
+        // Console.ReadKey(true);
         for(int i = 0; i < Rows; i++)
         {
-            Console.SetCursorPosition(2,i+2);
+            Console.SetCursorPosition(0,i);
             for(int j = 0; j  < Cols; j++)
             {
                 if(i == 0)
@@ -80,10 +81,10 @@ class Board
             snake.Parts.Add(new Pos(snake.Parts.Count-1, snake.Parts.Count));
             return false;
         }
-        else if(snake.Parts[0].X.Equals(1) ||
-                snake.Parts[0].Y.Equals(1) ||
-                snake.Parts[0].X.Equals(Cols) ||
-                snake.Parts[0].Y.Equals(Rows))        
+        else if(snake.Parts[0].X.Equals(0) ||
+                snake.Parts[0].Y.Equals(0) ||
+                snake.Parts[0].X.Equals(Cols-1) ||
+                snake.Parts[0].Y.Equals(Rows-1))        
             return true;
         else
             return false;
